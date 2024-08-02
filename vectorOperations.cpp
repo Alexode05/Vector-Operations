@@ -5,6 +5,10 @@
 #include <vector>
 using namespace std;
 
+class Vector{
+    
+}
+
 int main() {
     string dimension;
     int opertation;
