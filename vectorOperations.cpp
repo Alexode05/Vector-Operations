@@ -6,8 +6,10 @@
 using namespace std;
 
 class Vector{
+    public:
     
-}
+    
+};
 
 int main() {
     string dimension;
