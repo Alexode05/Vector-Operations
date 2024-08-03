@@ -42,7 +42,8 @@ int main() {
         do{
             cin >> operation;
         }while((operation !=1 && operation !=2 && operation !=3 && operation !=4 && operation !=5 && operation !=6)
-                || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3));
+                || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3)
+                || (dimension == "2D" && operation == 6) || (dimension == "2d" && operation == 6));
 
         dim = dimensionOfVector(dimension);
         switch (operation){
