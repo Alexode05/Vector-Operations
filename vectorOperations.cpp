@@ -7,16 +7,20 @@ using namespace std;
 
 
 int dimensionOfVector(string dimension);
+void enterVects(vector<double>& v1, vector<double>& v2, int dim);
 void enterValues(vector<double>& v, int dim);
+
 double norm(vector<double>& v);
 double dotProduct(vector<double>& v1, vector<double>& v2, int dim);
 vector<double> crossProduct(vector<double>& v1, vector<double>& v2);
+double angleBtwVects(vector<double>& v1, vector<double>& v2, int dim);
 
 int main() {
     string dimension;
     int dim;;
     int operation;
-    vector<double> v1, v2;
+    vector<double> v1, v2, v3;
+    const  double PI = 3.14159265358979323846;
 
     cout << "########## Operations on vertors ##########" << '\n';
     while(true){
@@ -34,29 +38,26 @@ int main() {
             << "6. Volume of the parallelepiped built on 3 vectors" << '\n';
         do{
             cin >> operation;
-        }while((operation !=1 && operation !=2 && operation !=3) || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3));
+        }while((operation !=1 && operation !=2 && operation !=3 && operation !=4 && operation !=5 && operation !=6)
+                || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3));
 
         dim = dimensionOfVector(dimension);
         switch (operation){
         case 1:
             cout << "Enter the values of the vector" << '\n';
             enterValues(v1, dim);
+
             cout << "The norm of the vector is: " << norm(v1) << '\n';
             break;
         
         case 2:
-            cout << "Enter the values of the  1st vector: v1 =" << '\n';
-            enterValues(v1, dim);
-            cout << "Enter the values of the  2nd vector: v2 =" << '\n';
-            enterValues(v2, dim);
+            enterVects(v1, v2, dim);
+
             cout << "The scalar product is: " <<  dotProduct(v1, v2, dim) <<  '\n';
             break;
 
         case 3:
-            cout << "Enter the values of the  1st vector: v1 =" << '\n';
-            enterValues(v1, dim);
-            cout << "Enter the values of the  2nd vector: v2 =" << '\n';
-            enterValues(v2, dim);
+            enterVects(v1, v2, dim);
             
             cout << "The vectorial product is: " << '\n';
             for(double value : crossProduct(v1, v2)){
@@ -65,11 +66,16 @@ int main() {
             break;
         
         case 4:
+            enterVects(v1, v2, dim);
+
+            cout << "The angle between the 2 vectors is: "  << '\n';
+            cout << "Rad:   " << angleBtwVects(v1, v2, dim) << '\n'
+                << "Deg:    " << angleBtwVects(v1, v2, dim) * 180 / PI << '\n';
             break;
         
         case 5:
             break; 
-            
+
         case 6:
             break;
         default:
@@ -82,6 +88,13 @@ int main() {
 
 int dimensionOfVector(string dimension){
     return stoi(dimension);
+}
+
+void enterVects(vector<double>& v1, vector<double>& v2, int dim){
+    cout << "Enter the values of the  1st vector: v1 =" << '\n';
+    enterValues(v1, dim);
+    cout << "Enter the values of the  2nd vector: v2 =" << '\n';
+    enterValues(v2, dim);
 }
 
 void enterValues(vector<double>& v, int dim){ //enter values of the vector
@@ -116,9 +129,7 @@ vector<double> crossProduct(vector<double>& a, vector<double>& b){
     return result;
 }
 
-
-
-
-// !!!! publish thenew branch
-
-
+double angleBtwVects(vector<double>& v1, vector<double>& v2, int dim){
+    double cos_a = dotProduct(v1, v2, dim) / (norm(v1) * norm(v2));
+    return acos(cos_a);
+}
