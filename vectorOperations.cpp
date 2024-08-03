@@ -16,7 +16,7 @@ int main() {
     string dimension;
     int dim;;
     int operation;
-    vector<double> v1, v2, v3;
+    vector<double> v1, v2;
 
     cout << "########## Operations on vertors ##########" << '\n';
     while(true){
@@ -24,19 +24,14 @@ int main() {
         do{
             cin >> dimension;
         }while ((dimension != "2D" && dimension != "3D") && (dimension != "2d" && dimension != "3d"));
+
         cout << "What operation do you want to perform ?" << '\n';
-        cout << "1. Norm" << '\n' 
-            << "2. Saclar product" << '\n' 
-            << "3. Vectorial product (only in 3D) " << '\n'
-            << "4. Angle between two vectors" << '\n'
-            << "5. Area of the parallelogram built on 2 vectors" << '\n'
-            << "6. Volume of the parallelepiped built on 3 vectors" << '\n';
+        cout << "1. Norm" << '\n' << "2. Saclar product" << '\n' << "3. Vectorial product (only in 3D) " << '\n';
         do{
             cin >> operation;
         }while((operation !=1 && operation !=2 && operation !=3) || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3));
 
         dim = dimensionOfVector(dimension);
-
         switch (operation){
         case 1:
             cout << "Enter the values of the vector" << '\n';
@@ -63,10 +58,6 @@ int main() {
                 cout << "|" <<  value << "|" << '\n';
             }
             break;
-
-        case 4:
-        case 5:
-        case 6:    
         default:
             break;
         }
@@ -110,3 +101,4 @@ vector<double> crossProduct(vector<double>& a, vector<double>& b){
     result.push_back(a[0]*b[1] - a[1]*b[0]);
     return result;
 }
+
