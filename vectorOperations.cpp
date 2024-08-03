@@ -15,8 +15,9 @@ double dotProduct(vector<double>& v1, vector<double>& v2, int dim);
 vector<double> crossProduct(vector<double>& v1, vector<double>& v2);
 double angleBtwVects(vector<double>& v1, vector<double>& v2, int dim);
 double aera2D(vector<double>& v1, vector<double>& v2);
-/* double aera3D(vector<double>& v1, vector<double>& v2);
- */
+double aera3D(vector<double>& v1, vector<double>& v2);
+double volumePara(vector<double>& v1, vector<double>& v2, vector<double>& v3, int dim);
+
 int main() {
     string dimension;
     int dim;;
@@ -78,14 +79,20 @@ int main() {
         
         case 5:
             enterVects(v1, v2, dim);
+
             if(dim == 2){
                 cout << "The area of the parallelogram built on the 2 vectors is: " << aera2D(v1, v2) << '\n';
             }else{
-/*                 cout << "The area of the parallelogram built on the 2 vectors is: " << aera3D(v1, v2) << '\n';
- */            }
+                cout << "The area of the parallelogram built on the 2 vectors is: " << aera3D(v1, v2) << '\n';
+            }
             break; 
 
         case 6:
+            enterVects(v1, v2, dim);
+            cout << "Enter the values of the  2nd vector: v3 =" << '\n';
+            enterValues(v3, dim);
+
+            cout << "The volume of the parallelepiped built on the 3 vectors is: " << volumePara(v1, v2, v3, dim) << '\n';
             break;
         default:
             break;
@@ -154,6 +161,12 @@ double aera2D(vector<double>& v1, vector<double>& v2){
     return abs(x);
 }
 
-/* double aera3D(vector<double>& v1, vector<double>& v2){
-    return norm(crossProduct(v1, v2));
-} */
+double aera3D(vector<double>& v1, vector<double>& v2){
+    vector<double> crossProd = crossProduct(v1, v2);
+    return norm(crossProd);
+}
+
+double volumePara(vector<double>& v1, vector<double>& v2, vector<double>& v3, int dim){
+    vector<double> crossProd = crossProduct(v1, v2);
+    return abs(dotProduct(crossProd, v3, dim));
+}
