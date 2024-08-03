@@ -19,46 +19,49 @@ int main() {
     vector<double> v1, v2;
 
     cout << "########## Operations on vertors ##########" << '\n';
-    cout << "What's dimension are the vectors ? (2D /3D):" << '\n';
-    do{
-        cin >> dimension;
-    }while ((dimension != "2D" && dimension != "3D") && (dimension != "2d" && dimension != "3d"));
-    cout << "What operation do you want to perform ?" << '\n';
-    cout << "1. Norm" << '\n' << "2. Saclar product" << '\n' << "3. Vectorial product (only for 3D) " << '\n';
-    do{
-        cin >> operation;
-    }while((operation !=1 && operation !=2 && operation !=3) || (dimension == "2D" && operation == 3));
+    while(true){
+        cout << "What's dimension are the vectors ? (2D /3D):" << '\n';
+        do{
+            cin >> dimension;
+        }while ((dimension != "2D" && dimension != "3D") && (dimension != "2d" && dimension != "3d"));
+        cout << "What operation do you want to perform ?" << '\n';
+        cout << "1. Norm" << '\n' << "2. Saclar product" << '\n' << "3. Vectorial product (only in 3D) " << '\n';
+        do{
+            cin >> operation;
+        }while((operation !=1 && operation !=2 && operation !=3) || (dimension == "2D" && operation == 3) || (dimension == "2d" && operation == 3));
 
-    dim = dimensionOfVector(dimension);
+        dim = dimensionOfVector(dimension);
 
-    switch (operation){
-    case 1:
-        cout << "Enter the values of the vector" << '\n';
-        enterValues(v1, dim);
-        cout << "The norm of the vector is: " << norm(v1) << '\n';
-        break;
-    
-    case 2:
-        cout << "Enter the values of the  1st vector: v1 =" << '\n';
-        enterValues(v1, dim);
-        cout << "Enter the values of the  2nd vector: v2 =" << '\n';
-        enterValues(v2, dim);
-        cout << "The scalar product is: " <<  dotProduct(v1, v2, dim) <<  '\n';
-        break;
-    case 3:
-        cout << "Enter the values of the  1st vector: v1 =" << '\n';
-        enterValues(v1, dim);
-        cout << "Enter the values of the  2nd vector: v2 =" << '\n';
-        enterValues(v2, dim);
+        switch (operation){
+        case 1:
+            cout << "Enter the values of the vector" << '\n';
+            enterValues(v1, dim);
+            cout << "The norm of the vector is: " << norm(v1) << '\n';
+            break;
         
-        cout << "The vectorial product is: " << '\n';
-        for(double value : crossProduct(v1, v2)){
-            cout << "|" <<  value << "|" << '\n';
+        case 2:
+            cout << "Enter the values of the  1st vector: v1 =" << '\n';
+            enterValues(v1, dim);
+            cout << "Enter the values of the  2nd vector: v2 =" << '\n';
+            enterValues(v2, dim);
+            cout << "The scalar product is: " <<  dotProduct(v1, v2, dim) <<  '\n';
+            break;
+        case 3:
+            cout << "Enter the values of the  1st vector: v1 =" << '\n';
+            enterValues(v1, dim);
+            cout << "Enter the values of the  2nd vector: v2 =" << '\n';
+            enterValues(v2, dim);
+            
+            cout << "The vectorial product is: " << '\n';
+            for(double value : crossProduct(v1, v2)){
+                cout << "|" <<  value << "|" << '\n';
+            }
+            break;
+        default:
+            break;
         }
-        break;
-    default:
-        break;
     }
+
     return 0;
 }
 
