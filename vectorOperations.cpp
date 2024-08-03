@@ -100,3 +100,8 @@ vector<double> crossProduct(vector<double>& a, vector<double>& b){
     result.push_back(a[0]*b[1] - a[1]*b[0]);
     return result;
 }
+
+
+
+
+// !!!! publish thenew branch
