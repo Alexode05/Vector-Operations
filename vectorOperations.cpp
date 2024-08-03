@@ -5,16 +5,18 @@
 #include <vector>
 using namespace std;
 
-void enterValues(vector<double>& v, int dim);
+
 int dimensionOfVector(string dimension);
+void enterValues(vector<double>& v, int dim);
+double norm(vector<double>& v);
 
 int main() {
     string dimension;
-    int dim =3;
-    int opertation;
+    int dim;;
+    int operation;
+    vector<double> v1, v2;
 
-
-/*     cout << "########## Operations on vertors ##########" << '\n';
+    cout << "########## Operations on vertors ##########" << '\n';
     cout << "What's dimension are the vectors ? (2D /3D):" << '\n';
     do{
         cin >> dimension;
@@ -22,15 +24,26 @@ int main() {
     cout << "What operation do you want to perform ?" << '\n';
     cout << "1. Norm" << '\n' << "2. Saclar product" << '\n' << "3. Vectorial product (only for 3D) " << '\n';
     do{
-        cin >> opertation;
-    }while((opertation !=1 && opertation !=2 && opertation !=3) || (dimension == "2D" && opertation == 3)); */
+        cin >> operation;
+    }while((operation !=1 && operation !=2 && operation !=3) || (dimension == "2D" && operation == 3));
 
-    vector<double> v1;
-    enterValues(v1, dim);
+    dim = dimensionOfVector(dimension);
+
+    switch (operation){
+    case 1:
+        cout << "Enter the values of the vector" << '\n';
+        enterValues(v1, dim);
+        cout << "The norm of the vector is: " << norm(v1) << '\n';
+        break;
     
-    for(int i=0; i<dim; i++){
-        cout << v1[i] << " ";
+    default:
+        break;
     }
+    
+    
+    /* for(int i=0; i<dim; i++){
+        cout << v1[i] << " ";
+    } */
 
     return 0;
 }
@@ -47,4 +60,11 @@ void enterValues(vector<double>& v, int dim){ //enter values of the vector
     }
 }
 
+double norm(vector<double>& v){
+    double sum = 0.0;
+    for( double value : v){
+        sum += value*value;
+    }
+    return sqrt(sum);
+}
 
